@@ -79,3 +79,5 @@ func SetRequestParams(geoData types.GeolocationData) (params url.Values) {
 	}
 	return
 }
+
+

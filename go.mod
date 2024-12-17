@@ -16,11 +16,10 @@ require (
 	golang.org/x/net v0.21.0 // indirect
 	golang.org/x/sys v0.17.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
+	gopkg.in/go-playground/assert.v1 v1.2.1 // indirect
 )
 
 require (
 	github.com/go-playground/form v3.1.4+incompatible
 	github.com/go-playground/validator/v10 v10.23.0
-	github.com/google/go-querystring v1.1.0 // indirect
-	github.com/gorilla/schema v1.4.1 // indirect
 )
