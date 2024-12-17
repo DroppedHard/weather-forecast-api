@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	server := api.NewAPIServer(":" + config.Envs.Port, nil)
+	server := api.NewAPIServer(":" + config.Envs.PORT, nil)
 	if err := server.Run(); err != nil {
 		log.Fatal(err)
 	}

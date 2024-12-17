@@ -8,8 +8,8 @@ import (
 )
 
 type Config struct {
-	Port		string
-	WeatherApi	string
+	PORT		string
+	WEATHER_API	string
 }
 
 var Envs = initConfig()
@@ -21,8 +21,8 @@ func initConfig() Config {
 	}
 	
 	return Config{
-		Port: getEnv("PORT", "8080"),
-		WeatherApi: getEnv("WEATHER_API", "https://api.open-meteo.com/v1/"),
+		PORT: getEnv("PORT", "8080"),
+		WEATHER_API: getEnv("WEATHER_API", "https://api.open-meteo.com/v1/"),
 	}
 }
 
