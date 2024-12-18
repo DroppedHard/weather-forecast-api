@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"math"
 	"net/url"
 	"strconv"
 	"time"
 
 	"github.com/DroppedHard/weather-forecast-api/types"
+	"github.com/DroppedHard/weather-forecast-api/utils"
 	"gonum.org/v1/gonum/floats"
 )
 
@@ -53,7 +53,7 @@ func processSummaryData(body io.ReadCloser) (types.SummaryResponseData, error){
 	forecastResponse.AvgDaylightDuration = prepareSummaryData(average(apiResponse.Daily.DaylightDuration), apiResponse.DailyUnits.DaylightDuration)
 	forecastResponse.AvgSurfacePressure = prepareSummaryData(average(apiResponse.Hourly.SurfacePressure), apiResponse.HourlyUnits.SurfacePressure)
 	forecastResponse.MinTemperature = prepareSummaryData(floats.Min(apiResponse.Daily.TemperatureMin), apiResponse.DailyUnits.TemperatureMin)
-	forecastResponse.MinApparentTemperature = prepareSummaryData(floats.Min(apiResponse.Daily.ApparentTemperatureMax), apiResponse.DailyUnits.ApparentTemperatureMin)
+	forecastResponse.MinApparentTemperature = prepareSummaryData(floats.Min(apiResponse.Daily.ApparentTemperatureMin), apiResponse.DailyUnits.ApparentTemperatureMin)
 	forecastResponse.MaxTemperature = prepareSummaryData(floats.Max(apiResponse.Daily.TemperatureMax), apiResponse.DailyUnits.TemperatureMax)
 	forecastResponse.MaxApparentTemperature = prepareSummaryData(floats.Max(apiResponse.Daily.ApparentTemperatureMax), apiResponse.DailyUnits.ApparentTemperatureMax)
 	forecastResponse.DominantWeather = calculateDominantWeather(apiResponse.Daily.WeatherCode)
@@ -61,12 +61,7 @@ func processSummaryData(body io.ReadCloser) (types.SummaryResponseData, error){
 }
 
 func average(xs []float64) float64 {
-	return roundFloat(floats.Sum(xs)/float64(len(xs)), 2)
-}
-
-func roundFloat(val float64, precision uint) float64 {
-    ratio := math.Pow(10, float64(precision))
-    return math.Round(val*ratio) / ratio
+	return utils.RoundFloat(floats.Sum(xs)/float64(len(xs)), 2)
 }
 
 func prepareSummaryData(value float64, unit string) string {

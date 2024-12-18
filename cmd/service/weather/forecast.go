@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/DroppedHard/weather-forecast-api/types"
+	"github.com/DroppedHard/weather-forecast-api/utils"
 )
 
 var forecastParams = map[string]string{
@@ -57,7 +58,7 @@ func calculateEnergyEstimate(daylightDuration []float64) (estimatedEnergy []floa
 	for i, daylightSeconds := range daylightDuration {
 		// Calculate energy: 2.5kW * 0.2 efficiency * daylight duration in hours
 		daylightHours := daylightSeconds / 3600.0
-		estimatedEnergy[i] = 2.5 * 0.2 * daylightHours
+		estimatedEnergy[i] = utils.RoundFloat(2.5 * 0.2 * daylightHours, 2)
 	}
-	return
+	return 
 }

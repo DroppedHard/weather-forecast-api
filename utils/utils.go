@@ -3,6 +3,7 @@ package utils
 import (
 	"encoding/json"
 	"fmt"
+	"math"
 	"net/http"
 
 	"github.com/DroppedHard/weather-forecast-api/types"
@@ -25,13 +26,6 @@ func init() {
 		fmt.Println("failed to register validation - latitude: ", errLat," longitude: ", errLong)
 		return 
 	}
-}
-
-func ParseJSON(r *http.Request, payload any) error {
-	if r.Body == nil {
-		return fmt.Errorf("missing request body")
-	}
-	return json.NewDecoder(r.Body).Decode(payload)
 }
 
 
@@ -61,6 +55,10 @@ func WriteError(w http.ResponseWriter, status int, err error) {
 	WriteJSON(w, status, map[string]string{"error":err.Error()})
 }
 
+func RoundFloat(val float64, precision uint) float64 {
+    ratio := math.Pow(10, float64(precision))
+    return math.Round(val*ratio) / ratio
+}
 
 
 
