@@ -11,6 +11,7 @@ func EnableCORS(next http.Handler) http.Handler {
 			"https://pogodynka-app.netlify.app",
 			"https://weather-forecast-app-j7gf.onrender.com",
 			"http://localhost:4173",
+			"http://localhost:5173",
 		}
 		log.Printf("Incoming request from Origin: %s\n", r.Header.Get("Origin"))
 		origin := r.Header.Get("Origin")
@@ -25,7 +26,6 @@ func EnableCORS(next http.Handler) http.Handler {
 		if isAllowed {
 			w.Header().Set("Access-Control-Allow-Origin", origin)
 		}
-		w.Header().Set("Access-Control-Allow-Origin", "https://pogodynka-app.netlify.app/, https://weather-forecast-app-j7gf.onrender.com, http://localhost:4173")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
