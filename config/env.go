@@ -24,7 +24,7 @@ func initConfig() Config {
 	return Config{
 		PORT: getEnv("PORT", "8080"),
 		WEATHER_API: getEnv("WEATHER_API", "https://api.open-meteo.com/v1/"),
-		ORIGINS_ALLOWED: getEnv("ORIGINS_ALLOWED", "scheme://dns[:port]"),
+		ORIGINS_ALLOWED: getEnv("ORIGINS_ALLOWED", `https://pogodynka-app.netlify.app,https://weather-forecast-app-j7gf.onrender.com,http://localhost:4173,http://localhost:5173`),
 	}
 }
 
